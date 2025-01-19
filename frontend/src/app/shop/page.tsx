@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { Product } from "@/types/product.types";
 import BreadcrumbShop from "@/components/shop-page/BreadcrumbShop";
 
 import {
@@ -23,6 +27,16 @@ import {
 } from "@/components/ui/pagination";
 
 export default function ShopPage() {
+  const [newArrivals, setNewArrivals] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const products = await newArrivalsData;
+      setNewArrivals(products);
+    };
+    fetchData();
+  }, []);
+
   return (
     <main className="pb-20">
       <div className="max-w-frame mx-auto px-4 xl:px-0">
@@ -64,10 +78,10 @@ export default function ShopPage() {
             <div className="w-full grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
               {[
                 ...relatedProductData.slice(1, 4),
-                ...newArrivalsData.slice(1, 4),
+                ...newArrivals.slice(1, 4),
                 ...topSellingData.slice(1, 4),
               ].map((product) => (
-                <ProductCard key={product.id} data={product} />
+                <ProductCard key={product._id} data={product} />
               ))}
             </div>
             <hr className="border-t-black/10" />
