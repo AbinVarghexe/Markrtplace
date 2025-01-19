@@ -21,13 +21,13 @@ async function getProducts() {
       "categoryName": category->name,
       "imageUrl": image[0].asset->url
     }`;
-  
+
   try {
     const data = await Client.fetch(res);
+    console.log("Products fetched successfully:", data);
     return data;
   } catch (error) {
     console.error("Error fetching products:", error);
-    throw error; // Rethrow the error if needed
   }
 }
 
