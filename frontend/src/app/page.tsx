@@ -1,54 +1,66 @@
+"use client";
+
 import ProductListSec from "@/components/common/ProductListSec";
 import Brands from "@/components/homepage/Brands";
 import DressStyle from "@/components/homepage/DressStyle";
 import Header from "@/components/homepage/Header";
 import Reviews from "@/components/homepage/Reviews";
+import { Client } from "@/lib/sanity";
 import { Product } from "@/types/product.types";
 import { Review } from "@/types/review.types";
+import { useEffect, useState } from "react";
 
-export const newArrivalsData: Product[] = [
-  {
-    id: 1,
-    title: "T-shirt with Tape Details",
-    srcUrl: "/images/pic1.png",
-    gallery: ["/images/pic1.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 120,
-    discount: {
-      amount: 0,
-      percentage: 0,
-    },
-    rating: 4.5,
-  },
-];
+
+async function getProducts() {
+  const res = `
+    *[_type == "product"][0...4]{
+      _id,
+      description,
+      price,
+      "slug": slug.current,
+      "categoryName": category->name,
+      "imageUrl": image[0].asset->url
+    }`;
+
+  try {
+    const data = await Client.fetch(res);
+    console.log("Products fetched successfully:", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+}
+
+export const newArrivalsData: Promise<Product[]> = getProducts();
 
 export const topSellingData: Product[] = [
-  {
-    id: 5,
-    title: "Vertical Striped Shirt",
-    srcUrl: "/images/pic5.png",
-    gallery: ["/images/pic5.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 232,
-    discount: {
-      amount: 0,
-      percentage: 20,
-    },
-    rating: 5.0,
-  },
+  // {
+  //   _id: 5,
+  //   title: "Vertical Striped Shirt",
+  //   srcUrl: "/images/pic5.png",
+  //   gallery: ["/images/pic5.png", "/images/pic10.png", "/images/pic11.png"],
+  //   price: 232,
+  //   discount: {
+  //     amount: 0,
+  //     percentage: 20,
+  //   },
+  //   rating: 5.0,
+  // },
 ];
 
 export const relatedProductData: Product[] = [
-  {
-    id: 12,
-    title: "Polo with Contrast Trims",
-    srcUrl: "/images/pic12.png",
-    gallery: ["/images/pic12.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 242,
-    discount: {
-      amount: 0,
-      percentage: 20,
-    },
-    rating: 4.0,
-  },
+  // {
+  //   id: 12,
+  //   title: "Polo with Contrast Trims",
+  //   srcUrl: "/images/pic12.png",
+  //   gallery: ["/images/pic12.png", "/images/pic10.png", "/images/pic11.png"],
+  //   price: 242,
+  //   discount: {
+  //     amount: 0,
+  //     percentage: 20,
+  //   },
+  //   rating: 4.0,
+  // },
 ];
 
 export const reviewsData: Review[] = [
@@ -70,14 +82,24 @@ export const reviewsData: Review[] = [
 ];
 
 export default function Home() {
+  const [newArrivals, setNewArrivals] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const products = await newArrivalsData;
+      setNewArrivals(products);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <Header />
       <Brands />
       <main className="my-[50px] sm:my-[72px]">
         <ProductListSec
-          title="NEW ARRIVALS"
-          data={newArrivalsData}
+          name="NEW ARRIVALS"
+          data={newArrivals}
           viewAllLink="/shop#new-arrivals"
         />
         <div className="max-w-frame mx-auto px-4 xl:px-0">
@@ -85,7 +107,7 @@ export default function Home() {
         </div>
         <div className="mb-[50px] sm:mb-20">
           <ProductListSec
-            title="top selling"
+            name="top selling"
             data={topSellingData}
             viewAllLink="/shop#top-selling"
           />

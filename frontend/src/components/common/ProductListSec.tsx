@@ -12,12 +12,12 @@ import { Product } from "@/types/product.types";
 import Link from "next/link";
 
 type ProductListSecProps = {
-  title: string;
+  name: string;
   data: Product[];
   viewAllLink?: string;
 };
 
-const ProductListSec = ({ title, data, viewAllLink }: ProductListSecProps) => {
+const ProductListSec = ({ name, data, viewAllLink }: ProductListSecProps) => {
   return (
     <section className="max-w-frame mx-auto text-center">
       <motion.h2
@@ -30,7 +30,7 @@ const ProductListSec = ({ title, data, viewAllLink }: ProductListSecProps) => {
           "text-[32px] md:text-5xl mb-8 md:mb-14 capitalize",
         ])}
       >
-        {title}
+        {name}
       </motion.h2>
       <motion.div
         initial={{ y: "100px", opacity: 0 }}
@@ -45,14 +45,18 @@ const ProductListSec = ({ title, data, viewAllLink }: ProductListSecProps) => {
           className="w-full mb-6 md:mb-9"
         >
           <CarouselContent className="mx-4 xl:mx-0 space-x-4 sm:space-x-5">
-            {data.map((product) => (
-              <CarouselItem
-                key={product.id}
-                className="w-full max-w-[198px] sm:max-w-[295px] pl-0"
-              >
-                <ProductCard data={product} />
-              </CarouselItem>
-            ))}
+            {Array.isArray(data) && data.length > 0 ? (
+              data.map((product) => (
+                <CarouselItem
+                  key={product._id}
+                  className="w-full max-w-[198px] sm:max-w-[295px] pl-0"
+                >
+                  <ProductCard data={product} />
+                </CarouselItem>
+              ))
+            ) : (
+              <div>No products available</div>
+            )}
           </CarouselContent>
         </Carousel>
         {viewAllLink && (
