@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import Rating from "../ui/Rating";
 import Image from "next/image";
@@ -11,7 +13,7 @@ type ProductCardProps = {
 const ProductCard = ({ data }: ProductCardProps) => {
   return (
     <Link
-      href={`/shop/product/${data._id}/${data.name.split(" ").join("-")}`}
+      href={data ? `/shop/product/${data._id}/${data.name ? data.name.split(" ").join("-") : "default-name"}` : "#"}
       className="flex flex-col items-start aspect-auto"
     >
       <div className="bg-[#F0EEED] rounded-[13px] lg:rounded-[20px] w-full lg:max-w-[295px] aspect-square mb-2.5 xl:mb-4 overflow-hidden">
@@ -23,6 +25,9 @@ const ProductCard = ({ data }: ProductCardProps) => {
           alt={data.name}
           priority
         />
+        <div>
+          Price: {data.price !== undefined ? data.price.toFixed(2) : "N/A"}
+        </div>
       </div>
       <strong className="text-black xl:text-xl">{data.name}</strong>
       <div className="flex items-end mb-1 xl:mb-2">
@@ -35,7 +40,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
           readonly
         />
         <span className="text-black text-xs xl:text-sm ml-[11px] xl:ml-[13px] pb-0.5 xl:pb-0">
-          {data.rating.toFixed(1)}
+          {data.rating !== undefined && data.rating !== null ? data.rating.toFixed(1) : "N/A"}
           <span className="text-black/60">/5</span>
         </span>
       </div>
