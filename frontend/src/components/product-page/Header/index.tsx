@@ -22,7 +22,7 @@ const Header = ({ data }: { data: Product }) => {
               "text-2xl md:text-[40px] md:leading-[40px] mb-3 md:mb-3.5 capitalize",
             ])}
           >
-            {data.title}
+            {data.name}
           </h1>
           <div className="flex items-center mb-3 sm:mb-3.5">
             <Rating
@@ -38,7 +38,7 @@ const Header = ({ data }: { data: Product }) => {
               <span className="text-black/60">/5</span>
             </span>
           </div>
-          <div className="flex items-center space-x-2.5 sm:space-x-3 mb-5">
+          {/* <div className="flex items-center space-x-2.5 sm:space-x-3 mb-5">
             {data.discount.percentage > 0 ? (
               <span className="font-bold text-black text-2xl sm:text-[32px]">
                 {`$${Math.round(
@@ -75,7 +75,7 @@ const Header = ({ data }: { data: Product }) => {
                 </span>
               )
             )}
-          </div>
+          </div> */}
           <p className="text-sm sm:text-base text-black/60 mb-5">
             This graphic t-shirt which is perfect for any occasion. Crafted from
             a soft and breathable fabric, it offers superior comfort and style.

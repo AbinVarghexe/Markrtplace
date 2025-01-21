@@ -9,5 +9,6 @@ export type Product = {
   imageUrl: string;
   gallery?: string[];
   price: number;
+  discount: Discount;
   rating: number;
 };

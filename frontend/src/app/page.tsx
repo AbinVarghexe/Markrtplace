@@ -40,7 +40,7 @@ export const topSellingData: Product[] = [
     imageUrl: "/images/pic5.png",
     gallery: ["/images/pic5.png", "/images/pic10.png", "/images/pic11.png"],
     price: 232,
-   
+    discount: 200,
     rating: 5.0,
   },
 ];
