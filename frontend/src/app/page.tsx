@@ -34,18 +34,15 @@ async function getProducts() {
 export const newArrivalsData: Promise<Product[]> = getProducts();
 
 export const topSellingData: Product[] = [
-  // {
-  //   _id: 5,
-  //   title: "Vertical Striped Shirt",
-  //   srcUrl: "/images/pic5.png",
-  //   gallery: ["/images/pic5.png", "/images/pic10.png", "/images/pic11.png"],
-  //   price: 232,
-  //   discount: {
-  //     amount: 0,
-  //     percentage: 20,
-  //   },
-  //   rating: 5.0,
-  // },
+  {
+    _id: 5,
+    name: "Vertical Striped Shirt",
+    imageUrl: "/images/pic5.png",
+    gallery: ["/images/pic5.png", "/images/pic10.png", "/images/pic11.png"],
+    price: 232,
+   
+    rating: 5.0,
+  },
 ];
 
 export const relatedProductData: Product[] = [

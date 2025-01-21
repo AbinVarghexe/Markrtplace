@@ -11,7 +11,9 @@ type ProductCardProps = {
 };
 
 const ProductCard = ({ data }: ProductCardProps) => {
+  console.log(data);
   return (
+    
     <Link
       href={data ? `/shop/product/${data._id}/${data.name ? data.name.split(" ").join("-") : "default-name"}` : "#"}
       className="flex flex-col items-start aspect-auto"

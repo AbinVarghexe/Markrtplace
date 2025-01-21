@@ -1,3 +1,5 @@
+"use client"
+
 import {
   newArrivalsData,
   relatedProductData,
@@ -9,12 +11,22 @@ import Header from "@/components/product-page/Header";
 import Tabs from "@/components/product-page/Tabs";
 import { Product } from "@/types/product.types";
 import { notFound } from "next/navigation";
+let data: Product[] = [];
 
-const data: Product[] = [
-  ...newArrivalsData,
-  ...topSellingData,
-  ...relatedProductData,
-];
+async function fetchData() {
+  const newArrivals = await newArrivalsData;
+
+
+
+  data = [
+    ...newArrivals,
+    ...topSellingData,
+    ...relatedProductData,
+  ];
+  console.log("Product data fetched successfully:", data);
+}
+
+fetchData();
 
 export default function ProductPage({
   params,
@@ -22,10 +34,10 @@ export default function ProductPage({
   params: { slug: string[] };
 }) {
   const productData = data.find(
-    (product) => product.id === Number(params.slug[0])
+    (product) => product._id === Number(params.slug[0])
   );
 
-  if (!productData?.title) {
+  if (!productData?.name) {
     notFound();
   }
 
@@ -33,14 +45,14 @@ export default function ProductPage({
     <main>
       <div className="max-w-frame mx-auto px-4 xl:px-0">
         <hr className="h-[1px] border-t-black/10 mb-5 sm:mb-6" />
-        <BreadcrumbProduct title={productData?.title ?? "product"} />
+        <BreadcrumbProduct title={productData?.name ?? "product"} />
         <section className="mb-11">
           <Header data={productData} />
         </section>
         <Tabs />
       </div>
       <div className="mb-[50px] sm:mb-20">
-        <ProductListSec title="You might also like" data={relatedProductData} />
+        <ProductListSec name="You might also like" data={relatedProductData} />
       </div>
     </main>
   );
