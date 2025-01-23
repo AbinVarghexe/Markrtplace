@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import ProductDetailsContent from "./ProductDetailsContent";
 import ReviewsContent from "./ReviewsContent";
-import FaqContent from "./FaqContent";
 
 type TabBtn = {
   id: number;
