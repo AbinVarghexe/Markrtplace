@@ -15,6 +15,7 @@ async function getProducts() {
   const res = `
     *[_type == "product"][0...4]{
       _id,
+      name,
       description,
       price,
       "slug": slug.current,
@@ -34,15 +35,15 @@ async function getProducts() {
 export const newArrivalsData: Promise<Product[]> = getProducts();
 
 export const topSellingData: Product[] = [
-  {
-    _id: 5,
-    name: "Vertical Striped Shirt",
-    imageUrl: "/images/pic5.png",
-    gallery: ["/images/pic5.png", "/images/pic10.png", "/images/pic11.png"],
-    price: 232,
-    discount: 200,
-    rating: 5.0,
-  },
+  // {
+  //   _id: 5,
+  //   name: "Vertical Striped Shirt",
+  //   imageUrl: "/images/pic5.png",
+  //   gallery: ["/images/pic5.png", "/images/pic10.png", "/images/pic11.png"],
+  //   price: 232,
+  //   discount: 200,
+  //   rating: 5.0,
+  // },
 ];
 
 export const relatedProductData: Product[] = [
@@ -76,6 +77,41 @@ export const reviewsData: Review[] = [
     rating: 5,
     date: "August 15, 2023",
   },
+  {
+    id: 2,
+    user: "Sarah M.",
+    content: `"I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”`,
+    rating: 5,
+    date: "August 15, 2023",
+  },
+  {
+    id: 2,
+    user: "Sarah M.",
+    content: `"I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”`,
+    rating: 5,
+    date: "August 15, 2023",
+  },
+  {
+    id: 2,
+    user: "Sarah M.",
+    content: `"I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”`,
+    rating: 5,
+    date: "August 15, 2023",
+  },
+  {
+    id: 2,
+    user: "Sarah M.",
+    content: `"I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”`,
+    rating: 5,
+    date: "August 15, 2023",
+  },
+  {
+    id: 2,
+    user: "Sarah M.",
+    content: `"I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.”`,
+    rating: 5,
+    date: "August 15, 2023",
+  }
 ];
 
 export default function Home() {

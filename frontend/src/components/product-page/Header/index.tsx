@@ -34,48 +34,17 @@ const Header = ({ data }: { data: Product }) => {
               readonly
             />
             <span className="text-black text-xs sm:text-sm ml-[11px] sm:ml-[13px] pb-0.5 sm:pb-0">
-              {data.rating.toFixed(1)}
+              {data.rating ? data.rating.toFixed(1) : "n/A"}
               <span className="text-black/60">/5</span>
             </span>
           </div>
-          {/* <div className="flex items-center space-x-2.5 sm:space-x-3 mb-5">
-            {data.discount.percentage > 0 ? (
+          <div className="flex items-center space-x-2.5 sm:space-x-3 mb-5">
+             
               <span className="font-bold text-black text-2xl sm:text-[32px]">
-                {`$${Math.round(
-                  data.price - (data.price * data.discount.percentage) / 100
-                )}`}
+                ₹{data.price}
               </span>
-            ) : data.discount.amount > 0 ? (
-              <span className="font-bold text-black text-2xl sm:text-[32px]">
-                {`$${data.price - data.discount.amount}`}
-              </span>
-            ) : (
-              <span className="font-bold text-black text-2xl sm:text-[32px]">
-                ${data.price}
-              </span>
-            )}
-            {data.discount.percentage > 0 && (
-              <span className="font-bold text-black/40 line-through text-2xl sm:text-[32px]">
-                ${data.price}
-              </span>
-            )}
-            {data.discount.amount > 0 && (
-              <span className="font-bold text-black/40 line-through text-2xl sm:text-[32px]">
-                ${data.price}
-              </span>
-            )}
-            {data.discount.percentage > 0 ? (
-              <span className="font-medium text-[10px] sm:text-xs py-1.5 px-3.5 rounded-full bg-[#FF3333]/10 text-[#FF3333]">
-                {`-${data.discount.percentage}%`}
-              </span>
-            ) : (
-              data.discount.amount > 0 && (
-                <span className="font-medium text-[10px] sm:text-xs py-1.5 px-3.5 rounded-full bg-[#FF3333]/10 text-[#FF3333]">
-                  {`-$${data.discount.amount}`}
-                </span>
-              )
-            )}
-          </div> */}
+            
+          </div>
           <p className="text-sm sm:text-base text-black/60 mb-5">
             This graphic t-shirt which is perfect for any occasion. Crafted from
             a soft and breathable fabric, it offers superior comfort and style.

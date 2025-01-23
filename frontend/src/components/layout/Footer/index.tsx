@@ -32,28 +32,6 @@ const socialsData: SocialNetworks[] = [
   },
 ];
 
-const paymentBadgesData: PaymentBadge[] = [
-  {
-    id: 1,
-    srcUrl: "/icons/Visa.svg",
-  },
-  {
-    id: 2,
-    srcUrl: "/icons/mastercard.svg",
-  },
-  {
-    id: 3,
-    srcUrl: "/icons/paypal.svg",
-  },
-  {
-    id: 4,
-    srcUrl: "/icons/applePay.svg",
-  },
-  {
-    id: 5,
-    srcUrl: "/icons/googlePay.svg",
-  },
-];
 
 const Footer = () => {
   return (
@@ -119,26 +97,7 @@ const Footer = () => {
                 Hamza Naeem
               </Link>
             </p>
-            <div className="flex items-center">
-              {paymentBadgesData.map((badge, _, arr) => (
-                <span
-                  key={badge.id}
-                  className={cn([
-                    arr.length !== badge.id && "mr-3",
-                    "w-[46px] h-[30px] rounded-[5px] border-[#D6DCE5] bg-white flex items-center justify-center",
-                  ])}
-                >
-                  <Image
-                    priority
-                    src={badge.srcUrl}
-                    width={33}
-                    height={100}
-                    alt="user"
-                    className="max-h-[15px]"
-                  />
-                </span>
-              ))}
-            </div>
+
           </div>
         </div>
         <LayoutSpacing />

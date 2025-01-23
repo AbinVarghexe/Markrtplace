@@ -77,9 +77,9 @@ export default function ShopPage() {
             </div>
             <div className="w-full grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
               {[
-                ...relatedProductData.slice(1, 4),
-                ...newArrivals.slice(1, 4),
-                ...topSellingData.slice(1, 4),
+                ...relatedProductData,
+                ...newArrivals,
+                ...topSellingData,
               ].map((product) => (
                 <ProductCard key={product._id} data={product} />
               ))}

@@ -23,9 +23,9 @@ export type RemoveCartItem = {
 };
 
 export type CartItem = {
-  id: number;
+  _id: number;
   name: string;
-  srcUrl: string;
+  imageUrl: string;
   price: number;
   attributes: string[];
   discount: Discount;
@@ -76,7 +76,7 @@ export const cartsSlice = createSlice({
       // check item in cart
       const isItemInCart = state.cart.items.find(
         (item) =>
-          action.payload.id === item.id &&
+          action.payload._id === item._id &&
           compareArrays(action.payload.attributes, item.attributes)
       );
 
@@ -85,12 +85,12 @@ export const cartsSlice = createSlice({
           ...state.cart,
           items: state.cart.items.map((eachCartItem) => {
             if (
-              eachCartItem.id === action.payload.id
+              eachCartItem._id === action.payload._id
                 ? !compareArrays(
                     eachCartItem.attributes,
                     isItemInCart.attributes
                   )
-                : eachCartItem.id !== action.payload.id
+                : eachCartItem._id !== action.payload._id
             )
               return eachCartItem;
 
@@ -126,7 +126,7 @@ export const cartsSlice = createSlice({
       // check item in cart
       const isItemInCart = state.cart.items.find(
         (item) =>
-          action.payload.id === item.id &&
+          action.payload.id === item._id &&
           compareArrays(action.payload.attributes, item.attributes)
       );
 
@@ -136,12 +136,12 @@ export const cartsSlice = createSlice({
           items: state.cart.items
             .map((eachCartItem) => {
               if (
-                eachCartItem.id === action.payload.id
+                eachCartItem._id === action.payload.id
                   ? !compareArrays(
                       eachCartItem.attributes,
                       isItemInCart.attributes
                     )
-                  : eachCartItem.id !== action.payload.id
+                  : eachCartItem._id !== action.payload.id
               )
                 return eachCartItem;
 
@@ -169,7 +169,7 @@ export const cartsSlice = createSlice({
       // check item in cart
       const isItemInCart = state.cart.items.find(
         (item) =>
-          action.payload.id === item.id &&
+          action.payload.id === item._id &&
           compareArrays(action.payload.attributes, item.attributes)
       );
 
@@ -178,9 +178,9 @@ export const cartsSlice = createSlice({
       state.cart = {
         ...state.cart,
         items: state.cart.items.filter((pItem) => {
-          return pItem.id === action.payload.id
+          return pItem._id === action.payload.id
             ? !compareArrays(pItem.attributes, isItemInCart.attributes)
-            : pItem.id !== action.payload.id;
+            : pItem._id !== action.payload.id;
         }),
         totalQuantities: state.cart.totalQuantities - isItemInCart.quantity,
       };

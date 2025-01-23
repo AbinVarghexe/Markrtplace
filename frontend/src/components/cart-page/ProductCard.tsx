@@ -24,11 +24,11 @@ const ProductCard = ({ data }: ProductCardProps) => {
   return (
     <div className="flex items-start space-x-4">
       <Link
-        href={`/shop/product/${data.id}/${data.name.split(" ").join("-")}`}
+        href={`/shop/product/${data._id}/${data.name}`}
         className="bg-[#F0EEED] rounded-lg w-full min-w-[100px] max-w-[100px] sm:max-w-[124px] aspect-square overflow-hidden"
       >
         <Image
-          src={data.srcUrl}
+          src={data.imageUrl}
           width={124}
           height={124}
           className="rounded-md w-full h-full object-cover hover:scale-110 transition-all duration-500"
@@ -39,7 +39,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
       <div className="flex w-full self-stretch flex-col">
         <div className="flex items-center justify-between">
           <Link
-            href={`/shop/product/${data.id}/${data.name.split(" ").join("-")}`}
+            href={`/shop/product/${data._id}/${data.name}`}
             className="text-black font-bold text-base xl:text-xl"
           >
             {data.name}
@@ -51,7 +51,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
             onClick={() =>
               dispatch(
                 remove({
-                  id: data.id,
+                  id: data._id,
                   attributes: data.attributes,
                   quantity: data.quantity,
                 })
@@ -119,13 +119,13 @@ const ProductCard = ({ data }: ProductCardProps) => {
               data.quantity === 1
                 ? dispatch(
                     remove({
-                      id: data.id,
+                      id: data._id,
                       attributes: data.attributes,
                       quantity: data.quantity,
                     })
                   )
                 : dispatch(
-                    removeCartItem({ id: data.id, attributes: data.attributes })
+                    removeCartItem({ id: data._id, attributes: data.attributes })
                   )
             }
             isZeroDelete

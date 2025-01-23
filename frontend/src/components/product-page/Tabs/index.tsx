@@ -21,10 +21,6 @@ const tabBtnData: TabBtn[] = [
     id: 2,
     label: "Rating & Reviews",
   },
-  {
-    id: 3,
-    label: "FAQs",
-  },
 ];
 
 const Tabs = () => {
@@ -53,7 +49,6 @@ const Tabs = () => {
       <div className="mb-12 sm:mb-16">
         {active === 1 && <ProductDetailsContent />}
         {active === 2 && <ReviewsContent />}
-        {active === 3 && <FaqContent />}
       </div>
     </div>
   );
