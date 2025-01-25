@@ -1,7 +1,3 @@
-export type Discount = {
-  amount: number;
-  percentage: number;
-};
 
 export type Product = {
   _id: string;
@@ -9,6 +5,5 @@ export type Product = {
   imageUrl: string;
   gallery?: string[];
   price: number;
-  discount: Discount;
   rating: number;
 };

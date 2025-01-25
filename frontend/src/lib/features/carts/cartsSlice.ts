@@ -1,5 +1,4 @@
 import { compareArrays } from "@/lib/utils";
-import { Discount } from "@/types/product.types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -9,11 +8,7 @@ const calcAdjustedTotalPrice = (
   quantity?: number
 ): number => {
   return (
-    (totalPrice + data.discount.percentage > 0
-      ? Math.round(data.price - (data.price * data.discount.percentage) / 100)
-      : data.discount.amount > 0
-      ? Math.round(data.price - data.discount.amount)
-      : data.price) * (quantity ? quantity : data.quantity)
+    (totalPrice )* (quantity ? quantity : data.quantity)
   );
 };
 
@@ -28,7 +23,6 @@ export type CartItem = {
   imageUrl: string;
   price: number;
   attributes: string[];
-  discount: Discount;
   quantity: number;
 };
 
@@ -182,7 +176,7 @@ export const cartsSlice = createSlice({
             ? !compareArrays(pItem.attributes, isItemInCart.attributes)
             : pItem._id !== action.payload.id;
         }),
-        totalQuantities: state.cart.totalQuantities - isItemInCart.quantity,
+        totalQuantities: state.cart.totalQuantities - isItemInCart.quantity, 
       };
       state.totalPrice =
         state.totalPrice - isItemInCart.price * isItemInCart.quantity;

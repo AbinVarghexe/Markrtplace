@@ -8,6 +8,9 @@ export default {
             type: 'array',
             title: 'Product-Image',
             of: [{ type: 'image' }],
+            options: {
+                hotspot: true
+              },
         },
         {
             name: 'name',

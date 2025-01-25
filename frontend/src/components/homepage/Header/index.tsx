@@ -21,7 +21,7 @@ const Header = () => {
               "text-4xl lg:text-[64px] lg:leading-[64px] mb-5 lg:mb-8",
             ])}
           >
-            FIND CLOTHES THAT MATCHES YOUR STYLE
+          UNLEASH MARKET SENSE AND EARTH WHILE YOU LEARN
           </motion.h2>
           <motion.p
             initial={{ y: "100px", opacity: 0 }}
